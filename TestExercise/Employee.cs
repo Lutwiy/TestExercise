@@ -2,18 +2,12 @@
 
 namespace TestExercise
 {
-    partial class Program
+    public class Employee
     {
-        public class Employee
-        {
-            public Guid Id { get; set; }
-            public string FirstName { get; set; }
-            public string SecondName { get; set; }
+        public Guid Id { get; set; }
+        public string FirstName { get; set; }
+        public string SecondName { get; set; }
 
-            public int Pin { get; set; }
-        }
-
-#region Not in task scope
-        #endregion
+        public int Pin { get; set; }
     }
 }
