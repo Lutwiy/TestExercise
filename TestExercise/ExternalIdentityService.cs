@@ -5,32 +5,31 @@ using System.Linq;
 namespace TestExercise.Generator
 {
     #region Not in task scope
-    public class EmployeeGenerator
+    public class ExternalIdentityService
     {
         INameGenerator FirstNames { get; }
         INameGenerator SecondNames { get; }
 
-        public EmployeeGenerator() : this(NameGenerator.FirstNames(), NameGenerator.Families()) { }
+        public ExternalIdentityService() : this(NameGenerator.FirstNames(), NameGenerator.Families()) { }
 
-        public EmployeeGenerator(INameGenerator names, INameGenerator families)
+        public ExternalIdentityService(INameGenerator names, INameGenerator families)
         {
             this.FirstNames = names;
             this.SecondNames = families;
         }
 
-        public virtual IEnumerable<Employee> GetEmployees(int count = 100)
+        public virtual IEnumerable<User> GetUsers(int count = 100)
         {
-            return Enumerable.Range(1, count).Select(this.GetEmployee);
+            return Enumerable.Range(1, count).Select(this.GetUser);
         }
 
-        internal virtual Employee GetEmployee(int pin)
+        internal virtual User GetUser(int pin)
         {
-            return new Employee
+            return new User
             {
-                Id = Guid.NewGuid(),
                 FirstName = this.FirstNames.NextName,
                 SecondName = this.SecondNames.NextName,
-                Pin = pin
+                Token = pin
             };
         }
     }
